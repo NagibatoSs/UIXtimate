@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using UIXtimate.Data;
 using UIXtimate.Models;
+using UIXtimate.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +17,9 @@ builder.Services.AddIdentity<User, IdentityRole>(options => options.SignIn.Requi
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 //builder.Services.AddIdentity<User,IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-   // .AddEntityFrameworkStores<ApplicationDbContext>();
+// .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddScoped<IPost, PostService>();
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages(); //sama dobavila
 

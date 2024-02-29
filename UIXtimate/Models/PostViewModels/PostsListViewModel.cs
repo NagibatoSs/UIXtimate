@@ -1,0 +1,9 @@
+﻿namespace UIXtimate.Models.PostViewModels
+{
+    public class PostsListViewModel
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+    }
+}

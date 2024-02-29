@@ -17,7 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Service\" />
+    <Folder Include="Views\PostCreation\" />
+    <Folder Include="Views\Profile\" />
   </ItemGroup>
 
 </Project>

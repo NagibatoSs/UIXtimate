@@ -1,0 +1,19 @@
+﻿@model UIXtimate.Models.PostViewModels.PostIndexViewModel
+<h1>Все посты</h1>
+<table class="table table-hover" id="postIndexTable">
+    <tbody>
+        @foreach (var post in Model.PostsList)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Posts" asp-action="OpenThePost" asp-route-id="@post.Id"> 
+                        @post.Title
+                    </a>
+                </td>
+                <td>
+                    @post.Description
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
