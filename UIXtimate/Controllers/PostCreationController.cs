@@ -8,5 +8,9 @@ namespace UIXtimate.Controllers
         {
             return View();
         }
+        public IActionResult CreatePost()
+        {
+            return View();
+        }
     }
 }

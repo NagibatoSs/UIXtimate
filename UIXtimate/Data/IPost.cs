@@ -6,7 +6,7 @@ namespace UIXtimate.Data
     public interface IPost
     {
         Post GetPostById(int id);
-        IQueryable<Post> GetAllPosts();
+        IEnumerable<Post> GetAllPosts();
         IEnumerable<PostReply> GetAllPostsReplies();
         User GetAuthor();
 
@@ -14,5 +14,6 @@ namespace UIXtimate.Data
         Task Delete(int postId);
         Task UpdatePostTitle(int postId, string newTitle);
         Task UpdatePostDescription(int postId, string newDescription);
+        Task AddReply(PostReply reply);
     }
 }

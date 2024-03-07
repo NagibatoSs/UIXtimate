@@ -13,24 +13,8 @@ namespace UIXtimate.Controllers
         {
             _postService = postService;
         }
-        public IActionResult Index()
-        {
-            var posts = _postService
-                .GetAllPosts()
-                .Select(post => new PostsListViewModel()
-                {
-                    Id = post.Id,
-                    Title = post.Title,
-                    Description = post.Description
-                });
-            var model = new PostIndexViewModel
-            {
-                PostsList = posts
-            };
-            return View(model);
-        }
 
-        public IActionResult OpenThePost(int id)
+        public IActionResult OpenPostById(int id)
         {
             var post = (_postService.GetPostById(id));
             var postContVM = new PostContentViewModel
@@ -39,7 +23,7 @@ namespace UIXtimate.Controllers
                 Description = post.Description,
                 Created = post.Created.ToShortDateString(),
                 Author = post.Author.UserName,
-                Replies = (IQueryable<PostReply>)post.Replies
+                Replies = post.Replies
             };
 
             var model = new PostContent

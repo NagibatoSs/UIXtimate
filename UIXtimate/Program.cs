@@ -19,6 +19,8 @@ builder.Services.AddIdentity<User, IdentityRole>(options => options.SignIn.Requi
 //builder.Services.AddIdentity<User,IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
 // .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddScoped<IPost, PostService>();
+builder.Services.AddScoped<IPostReply, PostReplyService>();
+builder.Services.AddScoped<IUser, UserService>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages(); //sama dobavila

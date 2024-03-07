@@ -1,6 +1,26 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<a href="">Все посты</a>
-<a href="">Создать пост</a>
+@model UIXtimate.Models.PostViewModels.HomeIndexViewModel
+<a asp-controller="PostCreationController" asp-action="CreatePost">
+    Создать пост
+</a>
 <a href="">Профиль</a>
+<h1>Все посты</h1>
+<table class="table table-hover" id="postIndexTable">
+    <tbody>
+        @foreach (var post in Model.PostsList)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Posts" asp-action="OpenPostById" asp-route-id="@post.Id">
+                        @post.Title
+                    </a>
+                </td>
+                <td>
+                    @post.Description
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

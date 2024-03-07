@@ -8,6 +8,6 @@
         public string Author { get; set; }
         public string Created { get; set; }
         public string UserName { get; set; }
-        public IQueryable<PostReply> Replies { get; set; }
+        public IEnumerable<PostReply> Replies { get; set; }
     }
 }

@@ -6,10 +6,10 @@
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime Created { get; set; }
-        public IEnumerable<string> FigmasUrls {  get; set; }
-        public IEnumerable<string> ImagesUrls {  get; set; }
         public int Views {  get; set; }
         public int EstimationsCount { get; set; }
+        // RepliesCount??
+        public virtual IEnumerable<PostVisualContent> VisualContents { get; set; }
         public virtual IEnumerable<PostReply> Replies { get; set; }
 
         public virtual User Author { get; set; }

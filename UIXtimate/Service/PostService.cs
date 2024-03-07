@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
+using System.Collections;
 using UIXtimate.Data;
 using UIXtimate.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace UIXtimate.Service
 {
@@ -11,6 +14,12 @@ namespace UIXtimate.Service
         {
             _context = context;
         }
+
+        public Task AddReply(PostReply reply)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task Create(Post post)
         {
             throw new NotImplementedException();
@@ -21,7 +30,7 @@ namespace UIXtimate.Service
             throw new NotImplementedException();
         }
 
-        public IQueryable<Post> GetAllPosts()
+        public IEnumerable<Post> GetAllPosts()
         {
             return _context.Posts
                 .Include(post => post.Replies)
@@ -40,13 +49,12 @@ namespace UIXtimate.Service
 
         public Post GetPostById(int id)
         {
-            var post = _context.Posts
+            IQueryable<Post> posts = _context.Posts
                 .Where(post => post.Id == id)
                 .Include(post => post.Replies)
-                    .ThenInclude(r => r.Author)
-                .Include(post => post.Author)
-                .FirstOrDefault();
-            return post;
+                   .ThenInclude(r => r.Author)
+                .Include(post => post.Author);
+            return posts.FirstOrDefault();
         }
 
         public Task UpdatePostDescription(int postId, string newDescription)
