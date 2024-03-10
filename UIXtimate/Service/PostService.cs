@@ -20,9 +20,10 @@ namespace UIXtimate.Service
             throw new NotImplementedException();
         }
 
-        public Task Create(Post post)
+        public async Task Create(Post post)
         {
-            throw new NotImplementedException();
+            _context.Add(post);
+            await _context.SaveChangesAsync();
         }
 
         public Task Delete(int postId)

@@ -56,7 +56,8 @@ namespace UIXtimate.Controllers
         {
             var model = new NewPostModel
             {
-                AuthorName = User.Identity.Name
+                AuthorName = User.Identity.Name,
+               // Title = 
             };
             return View();
         }
@@ -64,11 +65,11 @@ namespace UIXtimate.Controllers
         public async Task<IActionResult> AddPost(NewPostModel model)
         {
             var userId = _userManager.GetUserId(User);
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = _userManager.FindByIdAsync(userId).Result;
             var post = BuildPost(model, user);
-            await _postService.Create(post);
+            _postService.Create(post).Wait();
             //сюда юзер рейтинг манипуляции
-            return RedirectToAction("OpenPostById", "Posts", post.Id);
+            return RedirectToAction("OpenPostById", "Posts",new { id = post.Id });
         }
         private Post BuildPost(NewPostModel model, User user)
         {

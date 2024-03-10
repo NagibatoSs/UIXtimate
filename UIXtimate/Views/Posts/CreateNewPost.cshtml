@@ -1,0 +1,16 @@
+﻿@model UIXtimate.Models.ViewModels.NewPostModel
+
+<h1> Создание нового поста</h1>
+<form asp-action="AddPost" method="post" id="addPostForm">
+    <div class="form-group">
+        <label asp-for="Title">Тема</label>
+        <input asp-for="Title" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description">Описание</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+    <button type="submit" id="submitPostBtn" class="btn btn-submitPost">
+        Создать
+    </button>
+</form>
