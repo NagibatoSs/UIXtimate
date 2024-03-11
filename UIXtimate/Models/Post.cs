@@ -9,8 +9,8 @@
         public int Views {  get; set; }
         public int EstimationsCount { get; set; }
         // RepliesCount??
-        public virtual IEnumerable<PostVisualContent> VisualContents { get; set; }
-        public virtual IEnumerable<PostReply> Replies { get; set; }
+        public virtual List<PostVisualContent> VisualContents { get; set; }
+        public virtual List<PostReply> Replies { get; set; }
 
         public virtual User Author { get; set; }
         // public string AuthorUrl { get; set; }

@@ -9,5 +9,6 @@
         public string Created { get; set; }
         public string UserName { get; set; }
         public IEnumerable<PostReply> Replies { get; set; }
+        public IEnumerable<PostVisualContent> VisualContents { get; set; }
     }
 }

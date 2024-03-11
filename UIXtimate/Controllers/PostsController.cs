@@ -32,6 +32,15 @@ namespace UIXtimate.Controllers
         //        PostsList = posts
         //    };
         //    return View(model);
+        ////} 
+        //[HttpPost]
+        //public IActionResult AddVisualContent(NewPostModel model)
+        //{
+        //    if (model.VisualContents == null)
+        //        model.VisualContents = new List<string>();
+        //    model.VisualContents.Add(new PostVisualContent());
+        //    return RedirectToAction("CreateNewPost", model);
+        //   // return RedirectToAction("CreateNewPost", "Posts", model);
         //}
 
         public IActionResult OpenPostById(int id)
@@ -43,7 +52,8 @@ namespace UIXtimate.Controllers
                 Description = post.Description,
                 Created = post.Created.ToShortDateString(),
                 Author = post.Author.UserName,
-                Replies = post.Replies
+                Replies = post.Replies,
+                VisualContents = post.VisualContents
             };
 
             var model = new PostContent
@@ -52,19 +62,30 @@ namespace UIXtimate.Controllers
             };
             return View(model);
         }
-        public IActionResult CreateNewPost()
+        public IActionResult CreateNewPost(NewPostModel model = null)
         {
-            var model = new NewPostModel
+            if (model == null)
             {
-                AuthorName = User.Identity.Name,
-               // Title = 
-            };
-            return View();
+                model = new NewPostModel
+                {
+                    AuthorName = User.Identity.Name,
+                    // Title = 
+                };
+            }
+            if (model.VisualContents == null)
+                model.VisualContents = new List<string>();
+
+            return View(model);
         }
+        //public IActionResult CreateNewPost(NewPostModel model)
+        //{
+        //    return View(model);
+        //}
         [HttpPost]
         public async Task<IActionResult> AddPost(NewPostModel model)
         {
-            var userId = _userManager.GetUserId(User);
+            //var userId = _userManager.GetUserId(User);
+            var userId = "1";
             var user = _userManager.FindByIdAsync(userId).Result;
             var post = BuildPost(model, user);
             _postService.Create(post).Wait();
@@ -73,15 +94,22 @@ namespace UIXtimate.Controllers
         }
         private Post BuildPost(NewPostModel model, User user)
         {
-            return new Post
+            var post = new Post
             {
                 Title = model.Title,
                 Description = model.Description,
                 Author = user,
                 Created = DateTime.Now,
                 Views = 0,
-                EstimationsCount = 0
+                EstimationsCount = 0,
+                VisualContents = new List<PostVisualContent>()
             };
+            foreach(var content in model.VisualContents)
+            {
+                var visual = new PostVisualContent() { ContentUrl = content };
+                post.VisualContents.Add(visual);
+            }
+            return post;
         }
     }
 }

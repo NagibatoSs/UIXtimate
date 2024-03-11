@@ -3,6 +3,21 @@
 <h3>@Model.PostContentVM.Description</h3>
 <p>Дата создания: @Model.PostContentVM.Created</p>
 <p>Создал: @Model.PostContentVM.Author</p>
+@if (Model.PostContentVM.VisualContents.Any())
+{
+    <table class="table table-hover" id="postIndexTable">
+        <tbody>
+            @foreach (var visual in Model.PostContentVM.VisualContents)
+            {
+                <tr>
+                    <td>
+                        @visual.ContentUrl
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 @if (Model.PostContentVM.Replies.Any())
 {
 <table class="table table-hover" id="postIndexTable">

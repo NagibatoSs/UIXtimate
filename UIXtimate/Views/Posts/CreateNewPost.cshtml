@@ -10,6 +10,17 @@
         <label asp-for="Description">Описание</label>
         <textarea asp-for="Description" class="form-control"></textarea>
     </div>
+@*     <div>
+        <label asp-for="VisualContents">Загрузите сюда представление своего интерфейса</label>
+        <button type="submit" onclick="location.href='@Url.Action("AddVisualContent", "Posts", Model)'">Добавить ссылку на проект Figma</button>
+    </div> *@
+    <h1 class="display-4">@Html.DisplayNameFor(m => m.VisualContents)</h1>
+    <div class="row">
+        <div class="col-3">
+            <input type="button" class="btn btn-primary" value="Добавить контент" onclick="newField()" />
+        </div>
+        <div id="visualContents" class="col-9"></div>
+    </div>
     <button type="submit" id="submitPostBtn" class="btn btn-submitPost">
         Создать
     </button>

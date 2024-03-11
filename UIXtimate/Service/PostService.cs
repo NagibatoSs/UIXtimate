@@ -54,7 +54,8 @@ namespace UIXtimate.Service
                 .Where(post => post.Id == id)
                 .Include(post => post.Replies)
                    .ThenInclude(r => r.Author)
-                .Include(post => post.Author);
+                .Include(post => post.Author)
+                .Include(post => post.VisualContents);
             return posts.FirstOrDefault();
         }
 
