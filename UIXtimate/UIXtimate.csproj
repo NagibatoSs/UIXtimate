@@ -25,7 +25,7 @@
 
   <ItemGroup>
     <Folder Include="Views\PostCreation\" />
-    <Folder Include="Views\Profile\" />
+    <Folder Include="wwwroot\img\" />
   </ItemGroup>
 
 </Project>

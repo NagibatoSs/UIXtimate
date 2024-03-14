@@ -77,10 +77,7 @@ namespace UIXtimate.Controllers
 
             return View(model);
         }
-        //public IActionResult CreateNewPost(NewPostModel model)
-        //{
-        //    return View(model);
-        //}
+
         [HttpPost]
         public async Task<IActionResult> AddPost(NewPostModel model)
         {

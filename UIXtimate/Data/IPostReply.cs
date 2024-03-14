@@ -5,6 +5,7 @@ namespace UIXtimate.Data
     public interface IPostReply
     {
         PostReply GetPostReplyById(int id);
+        IEnumerable<PostReply> GetUserPostReplies(string userId);
         IEnumerable<PostReply> GetAllPostsReplies();
         User GetAuthor();
 

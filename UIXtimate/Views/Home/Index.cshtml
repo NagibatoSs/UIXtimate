@@ -5,7 +5,9 @@
 <a asp-controller="Posts" asp-action="CreateNewPost">
     Создать пост
 </a>
-<a href="">Профиль</a>
+<a asp-controller="Profile" asp-action="GetUserProfile" asp-route-id="1">
+    Профиль
+</a>
 <h1>Все посты</h1>
 <table class="table table-hover" id="postIndexTable">
     <tbody>

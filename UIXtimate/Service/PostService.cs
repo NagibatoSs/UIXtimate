@@ -38,14 +38,23 @@ namespace UIXtimate.Service
                 .Include(post => post.Author);
         }
 
-        public IEnumerable<PostReply> GetAllPostsReplies()
+        public IEnumerable<PostReply> GetAllPostReplies(int id)
         {
-            throw new NotImplementedException();
+            return _context.Posts
+               .Where(post => post.Id == id)
+               .Include(post => post.Replies)
+               .ThenInclude(post => post.Author)
+               .FirstOrDefault()
+               .Replies;
         }
 
-        public User GetAuthor()
+        public User GetPostAuthorById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Posts
+                .Where(post => post.Id == id)
+                .Include(post => post.Author)
+                .FirstOrDefault()
+                .Author;
         }
 
         public Post GetPostById(int id)
@@ -67,6 +76,15 @@ namespace UIXtimate.Service
         public Task UpdatePostTitle(int postId, string newTitle)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<Post> GetAllUserPosts(string userId)
+        {
+            return _context.Posts
+                .Where(post => post.Author.Id == userId).Include(post => post.Replies)
+                   .ThenInclude(r => r.Author)
+                .Include(post => post.Author)
+                .Include(post => post.VisualContents);
         }
     }
 }

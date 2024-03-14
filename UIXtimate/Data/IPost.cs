@@ -7,8 +7,9 @@ namespace UIXtimate.Data
     {
         Post GetPostById(int id);
         IEnumerable<Post> GetAllPosts();
-        IEnumerable<PostReply> GetAllPostsReplies();
-        User GetAuthor();
+        IEnumerable<PostReply> GetAllPostReplies(int id);
+        User GetPostAuthorById(int id);
+        IEnumerable<Post> GetAllUserPosts(string userId);
 
         Task Create(Post post);
         Task Delete(int postId);

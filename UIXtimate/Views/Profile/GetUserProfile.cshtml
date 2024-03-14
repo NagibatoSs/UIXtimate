@@ -1,0 +1,49 @@
+﻿@model UIXtimate.Models.ViewModels.UserViewModel
+
+<h1>@Model.Login</h1>
+<h3>@Model.Rank.Name</h3>
+<h3>Репутация: @Model.Reputation</h3>
+<h3>Баллы: @Model.Points</h3>
+<img src="@Model.ProfileImgPath" alt="Изображение профиля"/>
+@if (Model.Posts.Any())
+{
+    <h2>Посты пользователя</h2>
+    <table class="table table-hover" id="postIndexTable">
+        <tbody>
+            @foreach (var post in Model.Posts)
+            {
+                <tr>
+                    <td>
+                        @post.Title
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Вы не написали ни одного поста</p>
+}
+@if (Model.PostReplies.Any())
+{
+    <table class="table table-hover" id="postIndexTable">
+        <tbody>
+            @foreach (var rep in Model.PostReplies)
+            {
+                <tr>
+                    <td>
+                        @rep.Author.UserName
+                    </td>
+                    <td>
+                        @rep.Content
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Вы не написали ни одного ответа</p>
+}

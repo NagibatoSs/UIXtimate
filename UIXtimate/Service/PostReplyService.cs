@@ -44,5 +44,13 @@ namespace UIXtimate.Service
             //.Include(post => post.Author);
             return postReplies.FirstOrDefault();
         }
+
+        public IEnumerable<PostReply> GetUserPostReplies(string userId)
+        {
+            return _context.PostReplies
+                .Where(rep => rep.Author.Id == userId)
+                .Include(post => post.Author)
+                .Include(post => post.Post); ;
+        }
     }
 }
